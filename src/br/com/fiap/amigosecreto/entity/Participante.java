@@ -1,8 +1,22 @@
 package br.com.fiap.amigosecreto.entity;
 
-public class Participante {
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="PARTICIPANTES")
+public class Participante implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+	@Id @GeneratedValue
+	@Column(name="ID")
 	private Integer id;
+	
 	private Usuario usuario;
 	private Participante amigoSecreto;
 	
