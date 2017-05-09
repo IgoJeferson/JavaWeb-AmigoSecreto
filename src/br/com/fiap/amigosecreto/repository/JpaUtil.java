@@ -1,4 +1,4 @@
-package br.com.fiap.dao;
+package br.com.fiap.amigosecreto.repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

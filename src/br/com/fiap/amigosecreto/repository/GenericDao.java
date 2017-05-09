@@ -1,11 +1,11 @@
-package br.com.fiap.dao;
+package br.com.fiap.amigosecreto.repository;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import br.com.fiap.entity.Usuario;
+import br.com.fiap.amigosecreto.entity.Usuario;
 
 public class GenericDao<T> implements Dao<T> {
 
