@@ -22,11 +22,14 @@ public class Usuario implements Serializable {
 	private Integer id;
 	
 	@Column(name="CPF", nullable=false, length=11)
-	private Long cpf;
+	private String cpf;
 	
 	@Column(name="NOME", nullable=false, length=45)
 	private String nome;
 	
+	@Column(name="LOGIN", nullable=false, length=100)
+	private String login;
+
 	@Column(name="SENHA", nullable=false, length=20)
 	private String senha;
 	
@@ -42,11 +45,11 @@ public class Usuario implements Serializable {
 		this.id = id;
 	}
 
-	public Long getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(Long cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
@@ -72,6 +75,14 @@ public class Usuario implements Serializable {
 
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
+	}
+	
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
 	@Override
