@@ -8,7 +8,7 @@
 	<body>
 		<h1>Admin</h1>
 		<p>Sorteio ainda não realizado</p>
-		<form>
+		<form action=<c:url value="/sorteio"/> method="post">
 			<button>Realizar sorteio</button>
 		</form>
 	</body>

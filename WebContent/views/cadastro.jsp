@@ -7,6 +7,7 @@
 	</head>
 	<body>
 		<h1>Cadastro</h1>
+		${param.mensagem}
 		<form action=<c:url value="/cadastro"/> method="post">
 			<div>
 				<label for="nome">Nome</label>
