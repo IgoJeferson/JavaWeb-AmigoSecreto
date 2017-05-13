@@ -57,10 +57,6 @@ public class AdminController {
 		p.setDestinatario(primeiroRemetente);
 		sorteio.add(p);
 		
-		for (Participantes participantes : sorteio) {
-			System.out.format("Remetente: %s -> Destinatário: %s\n", participantes.getRemetente().getNome(), participantes.getDestinatario().getNome());
-		}
-		
 		return "redirect:admin";
 	}
 	
