@@ -15,7 +15,11 @@ public class GenericDao<T> implements Dao<T> {
 	public GenericDao(Class<T> classe) {
 		this.classe = classe;
 	}
-
+	
+	public void setEm(EntityManager em) {
+		this.em = em;
+	}
+	
 	@Override
 	public void adicionar(T entidade) {
 		em = JpaUtil.getEntityManager();
