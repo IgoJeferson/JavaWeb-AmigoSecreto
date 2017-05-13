@@ -14,10 +14,10 @@ import br.com.fiap.amigosecreto.enums.Perfil;
 
 @Controller
 public class AdminController {
-	private static final List<Participantes> sorteio = new ArrayList<>();
+	public static final List<Participantes> sorteio = new ArrayList<>();
 	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public String login(ModelMap model) {
+	public String admin(ModelMap model) {
 		model.addAttribute("sorteio", sorteio);
 		return "admin/admin";
 	}
@@ -56,10 +56,6 @@ public class AdminController {
 		p.setRemetente(remetente);
 		p.setDestinatario(primeiroRemetente);
 		sorteio.add(p);
-		
-		for (Participantes participantes : sorteio) {
-			System.out.format("Remetente: %s -> Destinatário: %s\n", participantes.getRemetente().getNome(), participantes.getDestinatario().getNome());
-		}
 		
 		return "redirect:admin";
 	}
