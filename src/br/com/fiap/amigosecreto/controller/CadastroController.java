@@ -2,6 +2,7 @@ package br.com.fiap.amigosecreto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -62,16 +63,19 @@ public class CadastroController {
 	
 	@RequestMapping(value = "/cadastro", method = RequestMethod.POST)
 	public String cadastro(ModelMap model, Usuario usuario) {
-		for (Usuario u : usuarios) {
-			if (!u.getLogin().equals(usuario.getLogin())) {
-				continue;
-			}
+		
+		Optional<Usuario> u = usuarios.stream().filter(user -> 
+			user.getLogin().equals(usuario.getLogin())).findFirst();
+		
+		if (!u.isPresent()) {
 			model.addAttribute("mensagem", "Login já existe");
 			return "redirect:cadastro";
 		}
+		
 		usuario.setPerfil(Perfil.PARTICIPANTE);
 		usuarios.add(usuario);
 		model.addAttribute("mensagem", "Usuário cadastrado com sucesso!");
+
 		return "redirect:login";
 	}
 
