@@ -24,36 +24,44 @@ public class AdminController {
 	
 	@RequestMapping(value = "/sorteio", method = RequestMethod.POST)
 	public String sorteio(ModelMap model) {
-		List<Usuario> participantes = new ArrayList<>();
+		List<Usuario> usuarios = new ArrayList<>();
 		
 		for (Usuario usuario : CadastroController.usuarios) {
 			if (usuario.getPerfil() == Perfil.PARTICIPANTE) {
-				participantes.add(usuario);
+				usuarios.add(usuario);
 			}
 		}
-		int size = participantes.size(); 
+		int size = usuarios.size(); 
 		if (size < 3) {
 			model.addAttribute("mensagem", "São necessários ao menos 3 usuários para realizar o sorteio. Quantidade: " + size);
 			return "redirect:admin";
 		}
 		
-		do {
-			int i = getRandomIndex(participantes);
-			Usuario remetente = participantes.get(i);
-			participantes.remove(i);
-			i = getRandomIndex(participantes);
-			Usuario destinatario = participantes.get(i);
-			participantes.remove(i);
-		} while(!participantes.isEmpty());
+		int i = getRandomIndex(usuarios);
+		Usuario primeiroRemetente = usuarios.get(i); 
+		Usuario remetente = primeiroRemetente;
+		usuarios.remove(i);
 		
-		Usuario remetente;
+		while (!usuarios.isEmpty()) {
+			i = getRandomIndex(usuarios);
+			Usuario destinatario = usuarios.get(i);
+			usuarios.remove(i);
+			Participantes participantes = new Participantes();
+			participantes.setRemetente(remetente);
+			participantes.setDestinatario(destinatario);
+			sorteio.add(participantes);
+			remetente = destinatario;
+		}
+		Participantes p = new Participantes();
+		p.setRemetente(remetente);
+		p.setDestinatario(primeiroRemetente);
+		sorteio.add(p);
 		
-		
-		while (!participantes.isEmpty()) {
-			
+		for (Participantes participantes : sorteio) {
+			System.out.format("Remetente: %s -> Destinatário: %s\n", participantes.getRemetente().getNome(), participantes.getDestinatario().getNome());
 		}
 		
-		return "";
+		return "redirect:admin";
 	}
 	
 	private static int getRandomIndex(List<Usuario> participantes) {
