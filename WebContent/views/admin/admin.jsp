@@ -7,6 +7,7 @@
 	</head>
 	<body>
 		<h1>Admin</h1>
+		${param.mensagem}
 		<p>Sorteio ainda não realizado</p>
 		<form action=<c:url value="/sorteio"/> method="post">
 			<button>Realizar sorteio</button>
