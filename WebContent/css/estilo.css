@@ -1,0 +1,17 @@
+.centralizar {
+	position: fixed; /* Forma de posicionamento - FIXA */
+	top: 50%; /* Distante 50% do topo da tela do usuário */
+	left: 50%; /* Distante 50% do lado esquerdo da tela do usuário */
+	margin-top: -50px;
+	/* Margem negativa para o topo com a metade do valor da altura da imagem */
+	margin-left: -125px;
+	/* Margem negativa para a esquerda com a metade do valor da largura da imagem */
+}
+
+.botao {
+	text-align: right;
+}
+
+.botao {
+	text-align: center;
+}
