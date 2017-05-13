@@ -25,6 +25,34 @@ public class CadastroController {
 		usuario.setPerfil(Perfil.ADMINISTRADOR);
 		usuario.setNome("Administrador");
 		usuarios.add(usuario);
+		
+
+		Usuario usuario1 = new Usuario();
+		usuario1.setCpf("12345678910");
+		usuario1.setId(1);
+		usuario1.setLogin("teste1");
+		usuario1.setSenha("teste1");
+		usuario1.setPerfil(Perfil.PARTICIPANTE);
+		usuario1.setNome("Administrador");
+		usuarios.add(usuario1);
+		
+		Usuario usuario2 = new Usuario();
+		usuario2.setCpf("12345678910");
+		usuario2.setId(1);
+		usuario2.setLogin("teste2");
+		usuario2.setSenha("teste2");
+		usuario2.setPerfil(Perfil.PARTICIPANTE);
+		usuario2.setNome("Administrador");
+		usuarios.add(usuario2);
+		
+		Usuario usuario3 = new Usuario();
+		usuario3.setCpf("12345678910");
+		usuario3.setId(1);
+		usuario3.setLogin("teste3");
+		usuario3.setSenha("teste3");
+		usuario3.setPerfil(Perfil.PARTICIPANTE);
+		usuario3.setNome("Administrador");
+		usuarios.add(usuario3);
 	}
 	
 	@RequestMapping(value = "/cadastro", method = RequestMethod.GET)
