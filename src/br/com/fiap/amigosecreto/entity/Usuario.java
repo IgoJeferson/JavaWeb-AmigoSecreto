@@ -17,32 +17,29 @@ import br.com.fiap.amigosecreto.enums.Perfil;
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	@Column(name="ID")
 	private Integer id;
-	
-	@Column(name="CPF", nullable=false, length=11)
+
+	@Column(name="CPF", nullable=false, length=11, unique = true)
 	private String cpf;
-	
+
 	@Column(name="NOME", nullable=false, length=45)
 	private String nome;
-	
-	@Column(name="LOGIN", nullable=false, length=100)
+
+	@Column(name="LOGIN", nullable=false, length=100, unique = true)
 	private String login;
 
 	@Column(name="SENHA", nullable=false, length=20)
 	private String senha;
-	
-	@Column(name="PERFIL")
+
+	@Column(name="PERFIL", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private Perfil perfil;
 
 	public Integer getId() {
 		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getCpf() {
@@ -76,7 +73,7 @@ public class Usuario implements Serializable {
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
 	}
-	
+
 	public String getLogin() {
 		return login;
 	}
@@ -102,5 +99,5 @@ public class Usuario implements Serializable {
 		builder.append("]");
 		return builder.toString();
 	}
-	
+
 }

@@ -13,7 +13,7 @@
 <body>
 <div class="centralizar">
 	<h1 class="titulo">Login</h1>
-	</br>
+	<br>
 	${param.mensagem}
 	<form action=<c:url value="/login"/> method="post">
 		<div>
@@ -24,12 +24,12 @@
 			<label for="senha">Senha</label> <input id="senha" name="senha"
 				required type="password" placeholder="Sua senha" >
 		</div>
-	    </br>
+	    <br>
 		<div class="botao">
 			<button type="submit" class="btn btn-primary">Login</button>
 		</div>
 	</form>
-    </br>
+    <br>
 	<p>
 		Não possui login? <a href=<c:url value="/cadastro"/>>Cadastre-se!</a>
 	</p>

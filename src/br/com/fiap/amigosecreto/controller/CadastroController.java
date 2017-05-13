@@ -2,7 +2,6 @@ package br.com.fiap.amigosecreto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -22,7 +21,6 @@ public class CadastroController {
 	{
 		Usuario usuario = new Usuario();
 		usuario.setCpf("12345678910");
-		usuario.setId(1);
 		usuario.setLogin("admin");
 		usuario.setSenha("admin");
 		usuario.setPerfil(Perfil.ADMINISTRADOR);
@@ -31,7 +29,6 @@ public class CadastroController {
 
 		Usuario usuario1 = new Usuario();
 		usuario1.setCpf("12345678910");
-		usuario1.setId(1);
 		usuario1.setLogin("teste1");
 		usuario1.setSenha("teste1");
 		usuario1.setPerfil(Perfil.PARTICIPANTE);
@@ -40,7 +37,6 @@ public class CadastroController {
 
 		Usuario usuario2 = new Usuario();
 		usuario2.setCpf("12345678910");
-		usuario2.setId(1);
 		usuario2.setLogin("teste2");
 		usuario2.setSenha("teste2");
 		usuario2.setPerfil(Perfil.PARTICIPANTE);
@@ -49,7 +45,6 @@ public class CadastroController {
 
 		Usuario usuario3 = new Usuario();
 		usuario3.setCpf("12345678910");
-		usuario3.setId(1);
 		usuario3.setLogin("teste3");
 		usuario3.setSenha("teste3");
 		usuario3.setPerfil(Perfil.PARTICIPANTE);

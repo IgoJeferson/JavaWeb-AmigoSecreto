@@ -15,23 +15,25 @@ import javax.persistence.Table;
 @Table(name="SORTEIO")
 public class Participantes implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id @GeneratedValue
 	@Column(name="ID")
 	private int id;
 	
-	@JoinColumn(name="ID_REMETENTE")
+	@JoinColumn(name="ID_REMETENTE", unique = true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Usuario remetente;
 	
-	@JoinColumn(name="ID_DESTINATARIO")
+	@JoinColumn(name="ID_DESTINATARIO", unique = true)
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Usuario destinatario;
 	
 	public int getId() {
 		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
 	}
 	public Usuario getRemetente() {
 		return remetente;
