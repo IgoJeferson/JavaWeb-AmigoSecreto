@@ -1,5 +1,6 @@
 package br.com.fiap.amigosecreto.repository;
 
+import br.com.fiap.amigosecreto.entity.Participantes;
 import br.com.fiap.amigosecreto.entity.Usuario;
 import br.com.fiap.amigosecreto.enums.Perfil;
 
@@ -8,9 +9,11 @@ public class TestDao {
 	public static void main(String[] args) {
 
 		GenericDao<Usuario> genericUsuario = new GenericDao<Usuario>(Usuario.class);
+		GenericDao<Participantes> genericSorteio = new GenericDao<Participantes>(Participantes.class);
 		genericUsuario.em = JpaUtil.getEntityManager();
-
-		adicionarUsuariosParaTeste(genericUsuario);
+		genericSorteio.em = JpaUtil.getEntityManager();
+		
+		adicionarUsuariosParaTeste(genericUsuario, genericSorteio);
 		buscarUsuarioTeste(genericUsuario);
 		buscarUsuariosTeste(genericUsuario);
 	}
@@ -24,7 +27,7 @@ public class TestDao {
 		System.out.println(usuario.toString());
 	}
 
-	public static void adicionarUsuariosParaTeste(GenericDao<Usuario> genericUsuario) {
+	public static void adicionarUsuariosParaTeste(GenericDao<Usuario> genericUsuario, GenericDao<Participantes> genericSorteio) {
 
 		Usuario usuario = new Usuario();
 		usuario.setCpf("12345678910");
@@ -58,6 +61,10 @@ public class TestDao {
 		genericUsuario.adicionar(usuario1);
 		genericUsuario.adicionar(usuario2);
 		genericUsuario.adicionar(usuario3);
+		
+		Participantes participantes = new Participantes();
+		participantes.setRemetente(usuario1); 
+		participantes.setDestinatario(usuario2);
+		genericSorteio.adicionar(participantes);
 	}
-
 }
