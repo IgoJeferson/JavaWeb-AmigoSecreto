@@ -7,6 +7,13 @@
 	</head>
 	<body>
 		<h1>Amigo Secreto</h1>
-		<p>Sorteio ainda não realizado</p>
+		<h2>Bem-vindo, ${requestScope.usuario}!</h2>
+		<c:if test="${requestScope.amigoSecreto == null}">
+			<p>Sorteio ainda não realizado</p>
+		</c:if>
+		<c:if test="${requestScope.amigoSecreto != null}">
+			<p>Sorteio realizado</p>
+			<p>Seu amigo secreto é: ${requestScope.amigoSecreto}</p>
+		</c:if>
 	</body>
 </html>
