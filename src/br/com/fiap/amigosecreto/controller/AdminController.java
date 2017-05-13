@@ -12,7 +12,6 @@ import br.com.fiap.amigosecreto.entity.Participantes;
 import br.com.fiap.amigosecreto.entity.Usuario;
 import br.com.fiap.amigosecreto.enums.Perfil;
 import br.com.fiap.amigosecreto.repository.GenericDao;
-import br.com.fiap.amigosecreto.repository.JpaUtil;
 
 @Controller
 public class AdminController {
@@ -28,7 +27,6 @@ public class AdminController {
 	public String sorteio(ModelMap model) {
 		List<Usuario> usuarios = new ArrayList<>();
 		GenericDao<Participantes> genericSorteio = new GenericDao<Participantes>(Participantes.class);
-		genericSorteio.setEm(JpaUtil.getEntityManager());
 		
 		for (Usuario usuario : CadastroController.usuarios) {
 			if (usuario.getPerfil() == Perfil.PARTICIPANTE) {

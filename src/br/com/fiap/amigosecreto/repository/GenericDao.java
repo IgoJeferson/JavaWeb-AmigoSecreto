@@ -10,54 +10,76 @@ import br.com.fiap.amigosecreto.entity.Usuario;
 public class GenericDao<T> implements Dao<T> {
 
 	private final Class<T> classe;
-	protected EntityManager em;
+	private EntityManager em;
 
 	public GenericDao(Class<T> classe) {
 		this.classe = classe;
 	}
 	
-	public void setEm(EntityManager em) {
-		this.em = em;
-	}
-	
 	@Override
 	public void adicionar(T entidade) {
-		em = JpaUtil.getEntityManager();
-		em.getTransaction().begin();
-		em.persist(entidade);
-		em.getTransaction().commit();
-		em.close();
-
+		try {
+			em = JpaUtil.getEntityManager();
+			em.getTransaction().begin();
+			em.persist(entidade);
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+			throw e;
+		} finally {
+			em.close();
+		}
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> listar() {
-		em = JpaUtil.getEntityManager();
-		return em.createQuery("From " + classe.getSimpleName()).getResultList();
+		try {
+			em = JpaUtil.getEntityManager();
+			em.getTransaction().begin();
+			List<T> result = em.createQuery("From " + classe.getSimpleName()).getResultList();
+			em.getTransaction().commit();
+			return result;
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+			throw e;
+		} finally {
+			em.close();
+		}
 	}
 
 	@Override
 	public T buscar(int id) {
-		em = JpaUtil.getEntityManager();
-		em.getTransaction().begin();
-		T entidade = em.find(classe, id);
-		em.getTransaction().commit();
-		em.close();
-
-		return entidade;
+		try {
+			em = JpaUtil.getEntityManager();
+			em.getTransaction().begin();
+			T entidade = em.find(classe, id);
+			em.getTransaction().commit();
+			return entidade;
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+			throw e;
+		} finally {
+			em.close();
+		}
 	}
 	
 	public Usuario buscarUsuario(String nome, String senha){
-		em = JpaUtil.getEntityManager();
-		em.getTransaction().begin();
-		Query query = em.createQuery("select u from Usuario u where nome = :nome and senha = :senha");
-		query.setParameter("nome", nome);
-		query.setParameter("senha", senha);
-//		em.getTransaction().commit();
-//		em.close();
-		
-		return (Usuario) query.getSingleResult();
+		try {
+			em = JpaUtil.getEntityManager();
+			em.getTransaction().begin();
+			Query query = em.createQuery("select u from Usuario u where nome = :nome and senha = :senha");
+			query.setParameter("nome", nome);
+			query.setParameter("senha", senha);
+			Usuario usuario = (Usuario) query.getSingleResult();
+			em.getTransaction().commit();
+			return usuario;
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+			throw e;
+		} finally {
+			em.close();
+		}
 	}
 
 }

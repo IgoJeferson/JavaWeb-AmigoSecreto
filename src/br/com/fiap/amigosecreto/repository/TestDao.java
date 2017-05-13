@@ -10,8 +10,6 @@ public class TestDao {
 
 		GenericDao<Usuario> genericUsuario = new GenericDao<Usuario>(Usuario.class);
 		GenericDao<Participantes> genericSorteio = new GenericDao<Participantes>(Participantes.class);
-		genericUsuario.em = JpaUtil.getEntityManager();
-		genericSorteio.em = JpaUtil.getEntityManager();
 		
 		adicionarUsuariosParaTeste(genericUsuario, genericSorteio);
 		buscarUsuarioTeste(genericUsuario);
@@ -37,25 +35,25 @@ public class TestDao {
 		usuario.setNome("Administrador");
 
 		Usuario usuario1 = new Usuario();
-		usuario1.setCpf("12345678910");
+		usuario1.setCpf("12345678911");
 		usuario1.setLogin("teste1");
 		usuario1.setSenha("teste1");
 		usuario1.setPerfil(Perfil.PARTICIPANTE);
-		usuario1.setNome("Administrador");
+		usuario1.setNome("teste1");
 
 		Usuario usuario2 = new Usuario();
-		usuario2.setCpf("12345678910");
+		usuario2.setCpf("12345678912");
 		usuario2.setLogin("teste2");
 		usuario2.setSenha("teste2");
 		usuario2.setPerfil(Perfil.PARTICIPANTE);
-		usuario2.setNome("Administrador");
+		usuario2.setNome("teste2");
 
 		Usuario usuario3 = new Usuario();
-		usuario3.setCpf("12345678910");
+		usuario3.setCpf("12345678913");
 		usuario3.setLogin("teste3");
 		usuario3.setSenha("teste3");
 		usuario3.setPerfil(Perfil.PARTICIPANTE);
-		usuario3.setNome("Administrador");
+		usuario3.setNome("teste3");
 
 		genericUsuario.adicionar(usuario);
 		genericUsuario.adicionar(usuario1);

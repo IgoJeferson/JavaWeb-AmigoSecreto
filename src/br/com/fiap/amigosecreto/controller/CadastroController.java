@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import br.com.fiap.amigosecreto.entity.Usuario;
 import br.com.fiap.amigosecreto.enums.Perfil;
 import br.com.fiap.amigosecreto.repository.GenericDao;
-import br.com.fiap.amigosecreto.repository.JpaUtil;
 
 @Controller
 public class CadastroController {
@@ -61,7 +60,6 @@ public class CadastroController {
 	public String cadastro(ModelMap model, Usuario usuario) {
 
 		GenericDao<Usuario> genericUsuario = new GenericDao<Usuario>(Usuario.class);
-		genericUsuario.setEm(JpaUtil.getEntityManager());
 
 		for (Usuario u : usuarios) {
 			if (!u.getLogin().equals(usuario.getLogin())) {
