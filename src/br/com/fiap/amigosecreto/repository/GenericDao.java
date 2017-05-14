@@ -64,16 +64,33 @@ public class GenericDao<T> implements Dao<T> {
 		}
 	}
 	
-	public Usuario buscarUsuario(String nome, String senha){
+	public Usuario buscarUsuario(String login, String senha){
 		try {
 			em = JpaUtil.getEntityManager();
 			em.getTransaction().begin();
-			Query query = em.createQuery("select u from Usuario u where nome = :nome and senha = :senha");
-			query.setParameter("nome", nome);
+			Query query = em.createQuery("select u from Usuario u where login = :login and senha = :senha");
+			query.setParameter("login", login);
 			query.setParameter("senha", senha);
-			Usuario usuario = (Usuario) query.getSingleResult();
+			List<Usuario> result = query.getResultList();
 			em.getTransaction().commit();
-			return usuario;
+			return result.isEmpty() ? null : result.get(0);
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+			throw e;
+		} finally {
+			em.close();
+		}
+	}
+	
+	public boolean existe(String login){
+		try {
+			em = JpaUtil.getEntityManager();
+			em.getTransaction().begin();
+			Query query = em.createQuery("select u from Usuario u where login = :login");
+			query.setParameter("login", login);
+			boolean existe = !query.getResultList().isEmpty();
+			em.getTransaction().commit();
+			return existe;
 		} catch (Exception e) {
 			em.getTransaction().rollback();
 			throw e;

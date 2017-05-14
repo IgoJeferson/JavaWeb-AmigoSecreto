@@ -50,6 +50,8 @@ public class CadastroController {
 		usuario3.setNome("Administrador");
 		usuarios.add(usuario3);
 	}
+	
+	private final GenericDao<Usuario> dao = new GenericDao<>(Usuario.class);
 
 	@RequestMapping(value = "/cadastro", method = RequestMethod.GET)
 	public String cadastro() {
@@ -58,21 +60,20 @@ public class CadastroController {
 
 	@RequestMapping(value = "/cadastro", method = RequestMethod.POST)
 	public String cadastro(ModelMap model, Usuario usuario) {
-
-		GenericDao<Usuario> genericUsuario = new GenericDao<Usuario>(Usuario.class);
-
-		for (Usuario u : usuarios) {
-			if (!u.getLogin().equals(usuario.getLogin())) {
-				continue;
+		try {
+			String login = usuario.getLogin();
+			if (dao.existe(login)) {
+				model.addAttribute("mensagem", "Login já existe");
+				return "redirect:cadastro";
 			}
-			model.addAttribute("mensagem", "Login já existe");
+			usuario.setPerfil(Perfil.PARTICIPANTE);
+			dao.adicionar(usuario);
+			model.addAttribute("mensagem", "Usuário cadastrado com sucesso!");
+			return "redirect:login";
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("mensagem", "Erro ao cadastrar usuário");
 			return "redirect:cadastro";
 		}
-		
-		usuario.setPerfil(Perfil.PARTICIPANTE);
-		genericUsuario.adicionar(usuario);
-		model.addAttribute("mensagem", "Usuário cadastrado com sucesso!");
-
-		return "redirect:login";
 	}
 }

@@ -7,6 +7,9 @@
 </head>
 <body>
 	<h1>Admin</h1>
+	<form action=<c:url value="/logout"/> method="post">
+		<button type="submit">Logout</button>
+	</form>
 	${param.mensagem}
 	<c:if test="${requestScope.sorteio.isEmpty()}">
 		<p>Sorteio ainda não realizado</p>
