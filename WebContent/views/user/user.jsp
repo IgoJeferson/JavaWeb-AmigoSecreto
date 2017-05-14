@@ -7,7 +7,7 @@
 </head>
 <body>
 	<h1>Amigo Secreto</h1>
-	<h2>Bem-vindo, ${requestScope.usuario}!</h2>
+	<h2>Bem-vindo, ${sessionScope.usuario.nome}!</h2>
 	<form action=<c:url value="/logout"/> method="post">
 		<button type="submit">Logout</button>
 	</form>

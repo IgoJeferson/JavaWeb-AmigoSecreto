@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.fiap.amigosecreto.entity.Usuario;
 import br.com.fiap.amigosecreto.enums.Perfil;
-import br.com.fiap.amigosecreto.repository.GenericDao;
+import br.com.fiap.amigosecreto.repository.UsuarioDao;
 
 @Controller
 public class CadastroController {
@@ -51,7 +51,7 @@ public class CadastroController {
 		usuarios.add(usuario3);
 	}
 	
-	private final GenericDao<Usuario> dao = new GenericDao<>(Usuario.class);
+	private final UsuarioDao dao = new UsuarioDao();
 
 	@RequestMapping(value = "/cadastro", method = RequestMethod.GET)
 	public String cadastro() {

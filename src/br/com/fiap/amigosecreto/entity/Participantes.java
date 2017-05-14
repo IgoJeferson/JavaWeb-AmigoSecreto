@@ -25,11 +25,11 @@ public class Participantes implements Serializable {
 	private int id;
 	
 	@JoinColumn(name="ID_REMETENTE", unique = true)
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Usuario remetente;
 	
 	@JoinColumn(name="ID_DESTINATARIO", unique = true)
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Usuario destinatario;
 	
 	public int getId() {
