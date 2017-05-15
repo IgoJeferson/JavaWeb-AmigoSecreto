@@ -1,9 +1,10 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Admin</title>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <style type="text/css">
 	<%@include file="/css/bootstrap.min.css" %>
 	<%@include file="/css/estilo.css" %>
@@ -16,24 +17,24 @@
 	<form action=<c:url value="/logout"/> method="post">
 		<button type="submit" class="btn btn-lg btn-primary btn-block" >Logout</button>
 	</form>
-	${param.mensagem}
-	<c:if test="${requestScope.sorteio.isEmpty()}">
-		<p>Sorteio ainda não realizado</p>
+	${mensagem}
+	<c:if test="${sorteio.isEmpty()}">
+		<p>Sorteio ainda nÃ£o realizado</p>
 		<form action=<c:url value="/sorteio"/> method="post">
 			<button class="btn btn-lg btn-primary btn-block" >Realizar sorteio</button>
 		</form>
 	</c:if>
-	<c:if test="${!requestScope.sorteio.isEmpty()}">
+	<c:if test="${!sorteio.isEmpty()}">
 		<p>Sorteio realizado</p>
 		<table>
 			<thead>
 				<tr>
 					<th>Remetente</th>
-					<th>Destinatário</th>
+					<th>DestinatÃ¡rio</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${requestScope.sorteio}" var="participantes">
+				<c:forEach items="${sorteio}" var="participantes">
 					<tr>
 						<td>${participantes.remetente.nome}</td>
 						<td>${participantes.destinatario.nome}</td>

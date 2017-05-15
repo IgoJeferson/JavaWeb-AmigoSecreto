@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.fiap.amigosecreto.entity.Participantes;
 import br.com.fiap.amigosecreto.entity.Usuario;
@@ -26,12 +27,13 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/sorteio", method = RequestMethod.POST)
-	public String sorteio(ModelMap model) {
+	public String sorteio(ModelMap model, RedirectAttributes rm) {
 		try {
 			List<Usuario> usuarios = usuarioDao.listarParticipantes();
 			int size = usuarios.size(); 
 			if (size < 3) {
-				model.addAttribute("mensagem", "São necessários ao menos 3 usuários para realizar o sorteio. Quantidade: " + size);
+//				model.addAttribute("mensagem", "São necessários ao menos 3 usuários para realizar o sorteio. Quantidade: " + size);
+				rm.addFlashAttribute("mensagem", "São necessários ao menos 3 usuários para realizar o sorteio. Quantidade: " + size);
 				return "redirect:admin";
 			}
 			

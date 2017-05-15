@@ -1,9 +1,10 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Cadastro</title>
-		<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 		<style type="text/css">
 			<%@include file="../css/bootstrap.min.css" %>
 			<%@include file="../css/estilo.css" %>
@@ -13,7 +14,7 @@
 	<div class="container">
 			<div class="wrapper-form">
 			<h3 class="form-signin-heading">Cadastro</h3>
-			${param.mensagem}
+			${mensagem}
 			<form action=<c:url value="/cadastro"/> method="post">
 				<div>
 					<label for="nome">Nome</label>
