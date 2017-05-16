@@ -61,7 +61,13 @@ input[type="password"] {
 	transform: translateY(-50%);
 }
 
-.cadastro input,h3{
+.cadastro {
+	margin-top: 50vh;
+	padding: 20px 30px;
+	transform: translateY(-50%);
+}
+
+.cadastro h3,label{
 	background-color: rgba(0,0,0, .9);
 	color: #FFF;
 }

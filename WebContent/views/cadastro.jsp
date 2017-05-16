@@ -11,8 +11,8 @@
 		</style>
 	</head>
 	<body>
-	<div class="container">
-		<div class="wrapper-form">
+	<div class="container cadastro">
+<!-- 		<div class="wrapper-form"> -->
 			<h3 class="form-signin-heading">Cadastro</h3>
 			
 			<c:if test="${not empty mensagem }">
@@ -40,7 +40,7 @@
 					<button type="submit" class="btn btn-lg btn-primary btn-block">Salvar</button>
 				</div>
 			</form>
-		</div>
+<!-- 		</div> -->
 	</div>
 	</body>
 </html>
