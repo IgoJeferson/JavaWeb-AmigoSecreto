@@ -1,3 +1,9 @@
+body {
+	min-height: 100vh;
+	background-color: #CCC;
+	background-image: url('https://unsplash.it/g/1500/800?random');
+}
+
 .wrapper {
 	position: fixed; 
 	top: 25%; 
@@ -50,7 +56,14 @@ input[type="password"] {
 .login-form {
 	margin-top: 50vh;
 	padding: 20px 30px;
+	background-color: rgba(0,0,0, .9);
+	color: #FFF;
 	transform: translateY(-50%);
+}
+
+.cadastro input,h3{
+	background-color: rgba(0,0,0, .9);
+	color: #FFF;
 }
 
 .colorgraph {
