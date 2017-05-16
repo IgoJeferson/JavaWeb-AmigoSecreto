@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.fiap.amigosecreto.entity.Usuario;
 import br.com.fiap.amigosecreto.enums.Perfil;
@@ -17,16 +18,16 @@ public class LoginController {
 	private final UsuarioDao dao = new UsuarioDao();
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login() {
+	public String login(ModelMap model) {
 		return "login";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(String login, String senha, ModelMap model, HttpServletRequest request) {
+	public String login(String login, String senha, ModelMap model, HttpServletRequest request, RedirectAttributes redirectAttributes) {
 		try {
 			Usuario usuario = dao.buscarUsuario(login, senha);
 			if (usuario == null) {
-				model.addAttribute("mensagem", "Usuário e/ou senha inválidos");
+				redirectAttributes.addFlashAttribute("mensagem", "Usuário e/ou senha inválidos");
 				return "redirect:login";
 			}
 			request.getSession().setAttribute("usuario", usuario);
@@ -36,7 +37,7 @@ public class LoginController {
 			return "redirect:user";
 		} catch (Exception e) {
 			e.printStackTrace();
-			model.addAttribute("mensagem", "Erro ao fazer login");
+			redirectAttributes.addFlashAttribute("mensagem", "Erro ao fazer login");
 			return "redirect:login";
 		}
 	}

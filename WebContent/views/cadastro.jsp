@@ -14,7 +14,11 @@
 	<div class="container">
 			<div class="wrapper-form">
 			<h3 class="form-signin-heading">Cadastro</h3>
-			${mensagem}
+			
+			<c:if test="${not empty mensagem }">
+				<div class="alert alert-danger" role="alert">${mensagem}</div>
+			</c:if>
+			
 			<form action=<c:url value="/cadastro"/> method="post">
 				<div>
 					<label for="nome">Nome</label>

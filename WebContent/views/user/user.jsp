@@ -16,14 +16,15 @@
 			<h3 class="form-signin-heading">Amigo Secreto</h3>
 			<h4>Bem-vindo, ${usuario.nome}!</h4>
 			<form action=<c:url value="/logout"/> method="post">
-				<button type="submit">Logout</button>
+				<button type="submit" class="btn btn-lg btn-primary btn-block" >Logout</button>
 			</form>
 			<c:if test="${amigoSecreto == null}">
 				<p>Sorteio ainda não realizado</p>
 			</c:if>
 			<c:if test="${amigoSecreto != null}">
-				<p>Sorteio realizado</p>
-				<p>Seu amigo secreto é: ${amigoSecreto}</p>
+				<span class="label label-default">Sorteio realizado</span>
+				<br>
+				<div class="alert alert-info" role="alert">Seu amigo secreto é: <b>${amigoSecreto}</b></div>
 			</c:if>
 		</div>
 	</div>

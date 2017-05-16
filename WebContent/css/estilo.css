@@ -47,6 +47,12 @@ input[type="password"] {
 	border-top-right-radius: 0;
 }
 
+.login-form {
+	margin-top: 50vh;
+	padding: 20px 30px;
+	transform: translateY(-50%);
+}
+
 .colorgraph {
 	height: 7px;
 	border-top: 0;

@@ -27,13 +27,12 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/sorteio", method = RequestMethod.POST)
-	public String sorteio(ModelMap model, RedirectAttributes rm) {
+	public String sorteio(ModelMap model, RedirectAttributes redirectAttributes) {
 		try {
 			List<Usuario> usuarios = usuarioDao.listarParticipantes();
 			int size = usuarios.size(); 
 			if (size < 3) {
-//				model.addAttribute("mensagem", "São necessários ao menos 3 usuários para realizar o sorteio. Quantidade: " + size);
-				rm.addFlashAttribute("mensagem", "São necessários ao menos 3 usuários para realizar o sorteio. Quantidade: " + size);
+				redirectAttributes.addFlashAttribute("mensagem", "São necessários ao menos 3 usuários para realizar o sorteio. Quantidade: " + size);
 				return "redirect:admin";
 			}
 			
@@ -61,7 +60,7 @@ public class AdminController {
 			return "redirect:admin";
 		} catch (Exception e) {
 			e.printStackTrace();
-			model.addAttribute("mensagem", "Erro no sorteio");
+			model.addAttribute("mensagem", "Erro no sorteio " + e.getMessage());
 			return "redirect:admin";
 		}
 	}
